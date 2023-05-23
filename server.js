@@ -18,6 +18,7 @@ const pino = require('pino');
 const protoLoader = require('@grpc/proto-loader');
 const { getSpan, context } = require("@opentelemetry/api");
 
+const check = require('./check');
 const charge = require('./charge');
 
 const logger = pino({
