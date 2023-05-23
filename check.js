@@ -1,7 +1,11 @@
+const axios = require('axios');
+
 const uuid = require('uuid/v4');
 const pino = require('pino');
 
 const { context, getSpan, setSpan, SpanKind, trace } = require('@opentelemetry/api');
+
+const creditCheckServiceUrl = 'http://creditcheckservice:8888';
 
 const logger = pino({
   name: 'paymentservice',
@@ -25,5 +29,20 @@ const logger = pino({
 });
 
 module.exports = async function check(request) {
-
+  try {
+    //const location = ‘USA’;
+    //const response = await axios.get(`${creditCheckServiceUrl}/test?location=${location}`);
+    const response = await axios.get(`${creditCheckServiceUrl}/test`);
+    logger.info(
+      { 'type': 'INFO'
+      },
+      response.data
+    );
+  } catch (error) {
+    logger.error(
+      { 'type': 'ERROR'
+      },
+      response.data
+    );
+  }
 }
