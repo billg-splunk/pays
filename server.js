@@ -68,6 +68,13 @@ class HipsterShopServer {
           call.request
         )}`
       );
+      check('')
+        .then((response) => {
+          callback(null, response);
+        })
+        .catch((err) => {
+          callback(err);
+        });
       charge(call.request)
         .then((response) => {
           callback(null, response);
