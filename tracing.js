@@ -2,6 +2,7 @@ const { NodeTracerProvider } = require('@opentelemetry/node');
 const { B3MultiPropagator } = require('@opentelemetry/propagator-b3');
 const { ZipkinExporter } = require('@opentelemetry/exporter-zipkin');
 const { GrpcInstrumentation } = require('@opentelemetry/instrumentation-grpc');
+const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
 const { BatchSpanProcessor, ConsoleSpanExporter } = require('@opentelemetry/tracing');
 const { registerInstrumentations } = require('@opentelemetry/instrumentation');
 
@@ -13,6 +14,7 @@ provider.register({
 registerInstrumentations({
   instrumentations: [
     new GrpcInstrumentation(),
+    new HttpInstrumentation(),
   ],
 });
 
