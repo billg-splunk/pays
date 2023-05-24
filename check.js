@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-import fetch from 'node-fetch';
+const fetch = require ('node-fetch');
 
 const uuid = require('uuid/v4');
 const pino = require('pino');
