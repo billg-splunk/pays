@@ -35,6 +35,7 @@ module.exports = async function check(request) {
     //const location = ‘USA’;
     //const response = await axios.get(`${creditCheckServiceUrl}/test?location=${location}`);
     //const response = await axios.get(`${creditCheckServiceUrl}/test`);
+    import fetch from 'node-fetch';
     const response = await fetch(`${creditCheckServiceUrl}/test`);
     logger.info(
       { 'type': 'INFO',
