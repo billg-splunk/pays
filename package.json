@@ -10,6 +10,7 @@
   },
   "author": "Jonathan Lui",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@grpc/grpc-js": "^1.2.12",
     "@grpc/proto-loader": "^0.6.1",
