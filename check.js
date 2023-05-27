@@ -32,10 +32,10 @@ module.exports = async function check(request) {
   try {
     //const location = ‘USA’;
     //const response = await axios.get(`${creditCheckServiceUrl}/test?location=${location}`);
-    const response = await axios.get(`${creditCheckServiceUrl}/test`);
+    const response = await axios.get(`${creditCheckServiceUrl}/check?customernum=123456`);
     logger.info(
       { 'type': 'INFO',
-        'operation': 'Derek-credit-check'
+        'operation': 'credit-check-service call'
       },
       response.data
     );
