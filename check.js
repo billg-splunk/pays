@@ -62,9 +62,16 @@ module.exports = async function check(request) {
     grpcActiveSpan.setAttributes({
       'featureFlag': featureFlag
     });
-    // (6) Call creditcheckservice with customer num
+    // (6) If it is a hipsterCard workflow, set that attribute but then return
+    if ( iNum == 9 ) {
+      grpcActiveSpan.setAttributes({
+        'hipsterCard': 'yes'
+      });
+      return;
+    }
+    // (7) Call creditcheckservice with customer num
     const response = await axios.get(`${creditCheckServiceUrl}/check?customernum=${customerNum}`);
-    // (7) Log it out
+    // (8) Log it out
     logger.info(
       { 'type': 'INFO',
         'operation': 'credit-check-service call'
