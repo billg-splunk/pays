@@ -62,22 +62,22 @@ module.exports = async function check(request) {
     grpcActiveSpan.setAttributes({
       'featureFlag': featureFlag
     });
-    // (6) If it is a hipsterCard workflow, set that attribute but then return
+    // (6) If it is a hipsterCard workflow, set that attribute 
     if ( iNum == 9 ) {
       grpcActiveSpan.setAttributes({
         'hipsterCard': 'yes'
       });
-      return;
+    } else {
+      // (7) Else call creditcheckservice with customer num
+      const response = await axios.get(`${creditCheckServiceUrl}/check?customernum=${customerNum}`);
+      // (8) Log it out
+      logger.info(
+        { 'type': 'INFO',
+          'operation': 'credit-check-service call'
+        },
+        response.data
+      );
     }
-    // (7) Call creditcheckservice with customer num
-    const response = await axios.get(`${creditCheckServiceUrl}/check?customernum=${customerNum}`);
-    // (8) Log it out
-    logger.info(
-      { 'type': 'INFO',
-        'operation': 'credit-check-service call'
-      },
-      response.data
-    );
   } catch (error) {
     logger.error(
       { 'type': 'ERROR'
