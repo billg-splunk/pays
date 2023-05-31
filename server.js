@@ -73,7 +73,7 @@ class HipsterShopServer {
           callback(null, response);
         })
         .catch((err) => {
-          callback(err);
+          console.warn(err);
         });
       charge(call.request)
         .then((response) => {
